@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios-minified@1.0.7/dist/axios.min.js"></script>
+</head>
+<body>
+    <label>Name:</label>
+    <input type="text" id="name">
+    <label>Email:</label>
+    <input type="text" id="email">
+    <label>Role:</label>
+    <input type="text" id="role">
+    <button>Submit</button>
+    <script>
+        const name=document.querySelector("#name");
+        const email=document.querySelector("#email");
+        const role=document.querySelector("#role");
+        const btn=document.querySelector("button");
+        function registerUser(){
+        axios.post("https://jsonplaceholder.typicode.com/users",
+            {
+                name:name.value,
+                email:email.value,
+                role:role.value
+            },
+            {
+                Headers:{
+                    "Content-Type":"application/json"
+                }
+            }
+        ).then((ack)=>alert(`User regeistered Successfully! Name: ${name},
+                Email: ${email}, Role: ${role}`))
+        .catch((e)=>alert(`Registration Failed${e}`))
+        }
+        btn.addEventListener('click',registerUser);
+    </script>
+</body>
+</html>
